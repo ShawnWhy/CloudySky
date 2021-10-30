@@ -1,0 +1,40 @@
+
+<head>
+<style>
+body{overflow:hidden}
+#sky{position:absolute;overflow:hidden;height:100%;width:100%;background:linear-gradient(to top,rgb(77, 69, 50),rgb(25, 41, 24) 30%, rgb(21, 15, 31) );}
+#trees{width:100%;position:absolute;top:100%;display:flex;flex-direction: row;}.trebr{position:relative;width:.5%;transform-origin:botton;transform:translateY(-100%); background-color:black;}.trebr:hover{top:-20px}
+.cl{position:absolute;transform-origin:bottom;animation:floatup 20s both;  -webkit-filter: blur(3px);filter: blur(3px);}
+.clrow{position:absolute;animation:floatrow 20s both linear;top:100%;width:100%;height:8%}
+@keyframes floatup{0%{}100%{transform:scale(1000%)}}@keyframes floatrow{0%{}100%{transform:translateY(-1500%)}}</style></head>
+<body><div id="sky"></div><div id="trees"></div>  
+<script>cloudBackground="pink";function createtrees(){for(i=0;i<200;i++){tr=document.createElement("div");tr.classList.add("trebr");var rheight = Math.floor(Math.random()*100+20);var color;var letters = '0123456789ABCDEF';var color = '#';for (var j = 0; j < 6; j++){;color += letters[Math.floor(Math.random() * 16)];
+        tr.setAttribute("style", "height:"+rheight+";background-color:"+color);tr.setAttribute("color", color);document.getElementById("trees").appendChild(tr)
+        }}}createCloud();createtrees()
+    function createCloud(){
+      var Cr = document.createElement("div");Cr.classList.add("clrow");for(i=0;i<20;i++){var r1 = Math.floor(Math.random()*20+5);var r2 = Math.floor(Math.random()*80+5);var r3 = Math.floor(Math.random()*100+1);var r4 = Math.floor(Math.random()*70+20);var r5 = Math.floor(Math.random()*70+20)
+          var C = document.createElement("div")
+          C.classList.add("cl")
+          C.setAttribute("style","background-color:"+cloudBackground+";height:"+r1+";width:"+r2+";left:"+r3+"%;border-radius:"+r3+"%"+r3+"%"+r4+"%"+r4+"%")
+        Cr.appendChild(C)}
+        document.getElementById("sky").appendChild(Cr)
+        rows = document.getElementsByClassName("clrow");
+        for (i=0;i<rows.length;i++){
+        if(rows[i].getBoundingClientRect().top<0){
+          rows[i].remove()}}}
+
+        setInterval(() => {      
+          createCloud()   
+        }, 2000);
+
+        function selectTree(e){
+          cloudBackground=e.target.getAttribute("color");document.getElementById("sky").setAttribute("style","background:"+e.target.getAttribute("color"))
+        }
+
+    document.addEventListener('click',function(e){
+    if(e.target && e.target.classList.contains('trebr')){
+      console.log("ree")
+      selectTree(e);
+     }})
+
+    </script></body>
