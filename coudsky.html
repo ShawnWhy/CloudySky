@@ -8,9 +8,12 @@ body{overflow:hidden}
 .clrow{position:absolute;animation:floatrow 20s both linear;top:100%;width:100%;height:8%}
 @keyframes floatup{0%{}100%{transform:scale(1000%)}}@keyframes floatrow{0%{}100%{transform:translateY(-1500%)}}</style></head>
 <body><div id="sky"></div><div id="trees"></div>  
-<script>cloudBackground="pink";function createtrees(){for(i=0;i<200;i++){tr=document.createElement("div");tr.classList.add("trebr");var rheight = Math.floor(Math.random()*100+20);var color;var letters = '0123456789ABCDEF';var color = '#';for (var j = 0; j < 6; j++){;color += letters[Math.floor(Math.random() * 16)];
-        tr.setAttribute("style", "height:"+rheight+";background-color:"+color);tr.setAttribute("color", color);document.getElementById("trees").appendChild(tr)
-        }}}createCloud();createtrees()
+<script>
+function rdcolor(){var color;var letters = '0123456789ABCDEF';var color = '#';for (var j = 0; j < 6; j++){;color += letters[Math.floor(Math.random() * 16)]};return color}
+thrt="off";cloudBackground="pink";function createtrees(){
+  for(i=0;i<200;i++){cl=rdcolor();tr=document.createElement("div");tr.classList.add("trebr");var rheight = Math.floor(Math.random()*100+20);;
+        tr.setAttribute("style", "height:"+rheight+";background-color:"+cl );tr.setAttribute("color", cl);document.getElementById("trees").appendChild(tr)
+        }}createCloud();createtrees()
     function createCloud(){
       var Cr = document.createElement("div");Cr.classList.add("clrow");for(i=0;i<20;i++){var r1 = Math.floor(Math.random()*20+5);var r2 = Math.floor(Math.random()*80+5);var r3 = Math.floor(Math.random()*100+1);var r4 = Math.floor(Math.random()*70+20);var r5 = Math.floor(Math.random()*70+20)
           var C = document.createElement("div")
@@ -26,6 +29,12 @@ body{overflow:hidden}
         setInterval(() => {      
           createCloud()   
         }, 2000);
+        setInterval(() => {      
+          if(thrt=="off"){
+            cloudBackground=rdcolor()
+          }  
+        }, 10000);
+
 
         function selectTree(e){
           cloudBackground=e.target.getAttribute("color");document.getElementById("sky").setAttribute("style","background:"+e.target.getAttribute("color"))
@@ -35,6 +44,10 @@ body{overflow:hidden}
     if(e.target && e.target.classList.contains('trebr')){
       console.log("ree")
       selectTree(e);
+      thrt="on"
+      setTimeout(() => {
+        thrt="off"
+      }, 200);
      }})
 
     </script></body>
