@@ -6,7 +6,7 @@ body{overflow:hidden}
 #trees{width:100%;position:absolute;top:100%;display:flex;flex-direction: row;}.trebr{position:relative;width:.5%;transform-origin:botton;transform:translateY(-100%); background-color:black;}.trebr:hover{top:-20px}
 .cl{position:absolute;transform-origin:bottom;animation:floatup 20s both;  -webkit-filter: blur(3px);filter: blur(3px);}
 .clrow{position:absolute;animation:floatrow 20s both linear;top:100%;width:100%;height:8%}
-@keyframes floatup{0%{}100%{transform:scale(1000%)}}@keyframes floatrow{0%{}100%{transform:translateY(-1500%)}}</style></head>
+@keyframes floatup{0%{}100%{transform:scale(1000%);-webkit-transform:scale(1000%)}}@keyframes floatrow{0%{}100%{transform:translateY(-1500%)}}</style></head>
 <body><div id="sky"></div><div id="trees"></div>  
 <script>
 function rdcolor(){var color;var letters = '0123456789ABCDEF';var color = '#';for (var j = 0; j < 6; j++){;color += letters[Math.floor(Math.random() * 16)]};return color}
